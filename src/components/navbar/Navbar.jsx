@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+    const handleLogout = () => {
+        logOut()
+    }
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -23,11 +26,20 @@ const Navbar = () => {
                         </label>
                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                             <li>
-                                <a className="justify-between">
-                                    Profile
-                                </a>
+                                <a className="justify-between"  onClick={() => document.getElementById('my_modal_3').showModal()}>Profile</a>
+                                <dialog id="my_modal_3" className="modal">
+                                    <div className="modal-box">
+                                        <form method="dialog">
+                                            {/* if there is a button in form, it will close the modal */}
+                                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                        </form>
+                                        <img src={user.photoURL} alt="" />
+                                        <h3 className="font-bold text-lg">Hello {user.email}</h3>
+                                        <p className="py-4">{user.displayName}</p>
+                                    </div>
+                                </dialog>
                             </li>
-                            <li><a>Logout</a></li>
+                            <li><a onClick={handleLogout}>Logout</a></li>
                         </ul>
                     </div>
                 </div>
