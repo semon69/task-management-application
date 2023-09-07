@@ -4,7 +4,7 @@ import TaskApp from './TaskApp';
 const Home = () => {
 
     return (
-        <div className='max-w-7xl mx-auto my-10'>
+        <div className='max-w-7xl mx-auto'>
             <TaskApp></TaskApp>
         </div>
     );

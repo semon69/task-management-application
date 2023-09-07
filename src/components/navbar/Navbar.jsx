@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Navbar = () => {
@@ -9,14 +9,14 @@ const Navbar = () => {
     }
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-indigo-950 text-white">
                 <div className="flex-1">
-                    <a className="btn btn-ghost normal-case text-xl">Task Management</a>
+                    <a className="btn btn-ghost normal-case text-2xl font-bold">Task Management</a>
                 </div>
                 <div className="flex-none gap-2 mx-10">
                     <div className="flex gap-5">
-                        <p><Link to='/'>Home</Link> </p>
-                        <p><Link to='/login'>Login</Link> </p>
+                        <p><NavLink className={({ isActive }) => isActive? "text-orange-400": ""} to='/'>Home</NavLink> </p>
+                        <p><NavLink className={({ isActive }) => isActive? "text-orange-400": ""} to='/login'>Login</NavLink> </p>
                     </div>
                     <div className="dropdown dropdown-end">
                         {

@@ -3,29 +3,31 @@ import TaskTable from './TaskTable';
 
 const TaskList = ({ setStatusFilter, handleSortingChange, filteredTasks }) => {
     return (
-        <div>
-            <h2>Task List</h2>
-            <div>
-                <label>Status Filter:</label>
-                <select onChange={(e) => setStatusFilter(e.target.value)}>
-                    <option value="all">All</option>
-                    <option value="completed">Completed</option>
-                    <option value="in progress">In Progress</option>
-                    <option value="pending">Pending</option>
-                </select>
-            </div>
-            <div>
-                <select onChange={(e) => handleSortingChange(e.target.value)}>
-                    <option value="priority">Priority</option>
-                    <option value="dueDate">Due Date</option>
-                </select>
+        <div className='my-10'>
+            <h2 className='text-center font-bold text-3xl text-orange-400 my-5'>Task List</h2>
+            <div className='flex justify-center items-center gap-8 my-5'>
+                <div className='border-2 rounded'>
+                    <label>Status Filter:</label>
+                    <select className='bg-indigo-950 text-white' onChange={(e) => setStatusFilter(e.target.value)}>
+                        <option value="all">All</option>
+                        <option value="completed">Completed</option>
+                        <option value="in progress">In Progress</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                <div className='border-2 rounded'>
+                    <select className='bg-indigo-950 text-white' onChange={(e) => handleSortingChange(e.target.value)}>
+                        <option value="priority">Priority</option>
+                        <option value="dueDate">Due Date</option>
+                    </select>
+                </div>
             </div>
             <ul>
                 <div className="overflow-x-auto">
                     <table className="table">
                         {/* head */}
                         <thead>
-                            <tr className='font-bold text-black'>
+                            <tr className='font-bold text-xl text-white'>
                                 <th></th>
                                 <th>Task</th>
                                 <th>Description</th>

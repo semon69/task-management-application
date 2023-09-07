@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 function App() {
 
   return (
-    <div>
+    <div className='bg-indigo-950 text-white'>
       <Navbar></Navbar>
       <Outlet></Outlet>
     </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useNavigate } from "react-router-dom";
-import TaskTable from './TaskTable';
 import TaskList from './TaskList';
 
 function TaskApp() {
@@ -89,13 +88,13 @@ function TaskApp() {
     });
 
     return (
-        <div>
-            <h1 className='text-center font-bold text-3xl'>Create a Task</h1>
+        <div className=''>
+            <h1 className='text-center font-bold text-3xl text-orange-400 my-6'>Create a Task</h1>
             <form className='border max-w-5xl mx-auto shadow-xl p-10 rounded space-y-5'>
                 <div>
                     <label className='font-bold pr-5'>Title:</label>
                     <input
-                        className="input input-bordered w-full max-w-xs"
+                        className="input input-bordered w-full max-w-xs text-black"
                         type="text"
                         name="title"
                         value={newTask.title}
@@ -105,7 +104,7 @@ function TaskApp() {
                 <div className='flex items-center'>
                     <label className='font-bold pr-5'>Description:</label>
                     <textarea
-                        className='textarea textarea-bordered'
+                        className='textarea textarea-bordered text-black'
                         name="description"
                         value={newTask.description}
                         onChange={handleChange}
@@ -114,6 +113,7 @@ function TaskApp() {
                 <div>
                     <label className='font-bold pr-5'>Due Date:</label>
                     <input
+                        className='bg-indigo-950 text-white border-2 p-2 rounded'
                         type="date"
                         name="dueDate"
                         value={newTask.dueDate}
@@ -123,6 +123,7 @@ function TaskApp() {
                 <div>
                     <label className='font-bold pr-5'>Priority:</label>
                     <select
+                        className='bg-indigo-950 text-white border-2 p-2 rounded'
                         name="priority"
                         value={newTask.priority}
                         onChange={handleChange}
@@ -135,7 +136,7 @@ function TaskApp() {
                 <div>
                     <label className='font-bold pr-5'>Assign To:</label>
                     <input
-                        className="input input-bordered w-full max-w-xs"
+                        className="input input-bordered w-full max-w-xs text-black"
                         type="text"
                         name="assignedTo"
                         placeholder='User Name'
@@ -146,6 +147,7 @@ function TaskApp() {
                 <div>
                     <label className='font-bold pr-5'>Status:</label>
                     <select
+                        className='bg-indigo-950 text-white  border-2 p-2 rounded'
                         name="status"
                         value={newTask.status}
                         onChange={handleChange}
@@ -155,7 +157,7 @@ function TaskApp() {
                         <option value="completed">Completed</option>
                     </select>
                 </div>
-                <button onClick={handleSubmit} className='btn' type="submit">Create Task</button>
+                <button onClick={handleSubmit} className='btn bg-orange-400 font-bold text-white' type="submit">Create Task</button>
             </form>
             <TaskList setStatusFilter={setStatusFilter} handleSortingChange={handleSortingChange} filteredTasks={filteredTasks}></TaskList>
         </div>

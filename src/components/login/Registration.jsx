@@ -25,14 +25,14 @@ const Registration = () => {
     }
     return (
         <div>
-            <div className="hero min-h-screen bg-base-200 my-10">
+            <div className="hero min-h-screen bg-indigo-950 my-10">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="w-1/2 mr-16">
                         {/* <img src={img} alt="" /> */}
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-white">
                         <div className="card-body">
-                            <h1 className="text-3xl font-bold text-center text-orange-500">Sign Up</h1>
+                            <h1 className="text-3xl font-bold text-center text-orange-400">Sign Up</h1>
                             <form onSubmit={handleRegister}>
 
 
@@ -58,15 +58,15 @@ const Registration = () => {
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input type="text" placeholder="password" name='password' className="input input-bordered" />
+                                    <input type="password" placeholder="password" name='password' className="input input-bordered" />
                                     
                                 </div>
                                 <div className="form-control mt-6">
-                                    <input className="btn btn-error" type="submit" value="Sign Up" />
+                                    <input className="btn bg-orange-400 font-bold" type="submit" value="Sign Up" />
                                 </div>
                             </form>
                             <div>
-                                <p>Already have an account? <Link className='text-orange-600' to='/login'>Login</Link></p>
+                                <p className='text-black'>Already have an account? <Link className='text-orange-400' to='/login'>Login</Link></p>
                             </div>
                         </div>
                     </div>

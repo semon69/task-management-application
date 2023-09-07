@@ -23,12 +23,12 @@ const Login = () => {
     return (
         <div>
             <div>
-                <div className="hero min-h-screen bg-base-200 my-10">
+                <div className="hero min-h-screen bg-indigo-950  my-10">
                     <div className="hero-content flex-col lg:flex-row">
                         <div className="w-1/2 mr-16">
                             {/* <img src={} alt="" /> */}
                         </div>
-                        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-white">
                             <div className="card-body">
                                 <h1 className="text-3xl font-bold text-center text-orange-500">Login</h1>
                                 <form onSubmit={handleLogin}>
@@ -49,11 +49,11 @@ const Login = () => {
                                         </label>
                                     </div>
                                     <div className="form-control mt-6">
-                                        <input className="btn btn-error" type="submit" value="Login" />
+                                        <input className="btn bg-orange-400 font-bold" type="submit" value="Login" />
                                     </div>
                                 </form>
                                 <div>
-                                    <p>Don't have an account? <Link className='text-orange-600' to='/registration'>Register</Link></p>
+                                    <p className='text-black'>Don't have an account? <Link className='text-orange-400' to='/registration'>Register</Link></p>
                                 </div>
                             </div>
                         </div>
