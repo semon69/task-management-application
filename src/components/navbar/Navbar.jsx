@@ -13,29 +13,34 @@ const Navbar = () => {
                 <div className="flex-1">
                     <a className="btn btn-ghost normal-case text-xl">Task Management</a>
                 </div>
-                <div className="flex-none gap-2">
+                <div className="flex-none gap-2 mx-10">
                     <div className="flex gap-5">
                         <p><Link to='/'>Home</Link> </p>
                         <p><Link to='/login'>Login</Link> </p>
                     </div>
                     <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src={user?.photoURL} />
-                            </div>
-                        </label>
+                        {
+                            user ?
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user?.photoURL} />
+                                    </div>
+                                </label>
+                                :
+                                ''
+                        }
                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                             <li>
-                                <a className="justify-between"  onClick={() => document.getElementById('my_modal_3').showModal()}>Profile</a>
+                                <a className="justify-between" onClick={() => document.getElementById('my_modal_3').showModal()}>Profile</a>
                                 <dialog id="my_modal_3" className="modal">
                                     <div className="modal-box">
                                         <form method="dialog">
                                             {/* if there is a button in form, it will close the modal */}
                                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                         </form>
-                                        <img src={user.photoURL} alt="" />
-                                        <h3 className="font-bold text-lg">Hello {user.email}</h3>
-                                        <p className="py-4">{user.displayName}</p>
+                                        <img src={user?.photoURL} alt="" />
+                                        <h3 className="font-bold text-lg">Hello {user?.email}</h3>
+                                        <p className="py-4">{user?.displayName}</p>
                                     </div>
                                 </dialog>
                             </li>
