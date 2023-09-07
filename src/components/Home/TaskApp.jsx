@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useNavigate } from "react-router-dom";
 import TaskList from './TaskList';
+import Swal from 'sweetalert2';
 
 function TaskApp() {
     const { user } = useContext(AuthContext)
@@ -40,10 +41,11 @@ function TaskApp() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!user) {
+            Swal.fire('Please Login First')
             navigate('/login')
         } else {
             if (!newTask.title || !newTask.description || !newTask.dueDate) {
-                alert('Please fill in all required fields.');
+                Swal.fire('Please fill in all required fields')
                 return;
             }
 

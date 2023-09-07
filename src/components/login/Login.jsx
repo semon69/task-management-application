@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 const Login = () => {
     const { user, signIn } = useContext(AuthContext)
     console.log(user)
@@ -14,6 +15,7 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 console.log(result.user)
+                Swal.fire('Login Success')
                 navigate('/')
             })
             .catch(error => {
@@ -28,7 +30,7 @@ const Login = () => {
                         <div className="w-1/2 mr-16">
                             {/* <img src={} alt="" /> */}
                         </div>
-                        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-white">
+                        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-white text-black">
                             <div className="card-body">
                                 <h1 className="text-3xl font-bold text-center text-orange-500">Login</h1>
                                 <form onSubmit={handleLogin}>
