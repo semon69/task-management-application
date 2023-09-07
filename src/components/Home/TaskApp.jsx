@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useNavigate } from "react-router-dom";
+import TaskTable from './TaskTable';
+import TaskList from './TaskList';
 
 function TaskApp() {
     const { user } = useContext(AuthContext)
@@ -59,6 +61,32 @@ function TaskApp() {
 
 
     };
+    const handleSortingChange = (sortOption) => {
+        let sortedTasks = [...tasks];
+
+        if (sortOption === "priority") {
+            // Sort by priority (low, medium, high)
+            sortedTasks.sort((a, b) => {
+                const priorityOrder = { low: 1, medium: 2, high: 3 };
+                return priorityOrder[a.priority] - priorityOrder[b.priority];
+            });
+        } else if (sortOption === "dueDate") {
+            // Sort by due date
+            sortedTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+        }
+
+        // Update state with sorted tasks
+        setTasks(sortedTasks);
+    };
+
+    const [statusFilter, setStatusFilter] = useState('all');
+
+    const filteredTasks = tasks.filter((task) => {
+        if (statusFilter === 'all') {
+            return true;
+        }
+        return task.status === statusFilter;
+    });
 
     return (
         <div>
@@ -129,44 +157,7 @@ function TaskApp() {
                 </div>
                 <button onClick={handleSubmit} className='btn' type="submit">Create Task</button>
             </form>
-            <h2>Task List</h2>
-            <ul>
-                <div className="overflow-x-auto">
-                    <table className="table">
-                        {/* head */}
-                        <thead>
-                            <tr className='font-bold text-black'>
-                                <th></th>
-                                <th>Task</th>
-                                <th>Description</th>
-                                <th>Due Date</th>
-                                <th>Priority</th>
-                                <th>Assigned To</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-
-                                tasks.map((task, index) => (
-                                    <tr key={index}>
-                                        <th>{index + 1}</th>
-                                        <td>{task.title}</td>
-                                        <td>{task.description}</td>
-                                        <td>{task.dueDate}</td>
-                                        <td>{task.priority}</td>
-                                        <td>{task.assignedTo}</td>
-                                        <td>{task.status}</td>
-                                    </tr>
-                                ))
-
-                            }
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </ul>
+            <TaskList setStatusFilter={setStatusFilter} handleSortingChange={handleSortingChange} filteredTasks={filteredTasks}></TaskList>
         </div>
     );
 }
