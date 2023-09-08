@@ -3,10 +3,10 @@ import TaskTable from './TaskTable';
 
 const TaskList = ({ setStatusFilter, handleSortingChange, filteredTasks }) => {
     return (
-        <div className='my-10'>
+        <div className='my-10 border-2 p-5'>
             <h2 className='text-center font-bold text-3xl text-orange-400 my-5'>Task List</h2>
-            <div className='flex justify-center items-center gap-8 my-5'>
-                <div className='border-2 rounded'>
+            <div className='flex justify-center items-center gap-8 my-5 '>
+                <div className='border-2 rounded p-2'>
                     <label>Status Filter:</label>
                     <select className='bg-indigo-950 text-white' onChange={(e) => setStatusFilter(e.target.value)}>
                         <option value="all">All</option>
@@ -15,7 +15,7 @@ const TaskList = ({ setStatusFilter, handleSortingChange, filteredTasks }) => {
                         <option value="pending">Pending</option>
                     </select>
                 </div>
-                <div className='border-2 rounded'>
+                <div className='border-2 rounded p-2'>
                     <select className='bg-indigo-950 text-white' onChange={(e) => handleSortingChange(e.target.value)}>
                         <option value="priority">Priority</option>
                         <option value="dueDate">Due Date</option>

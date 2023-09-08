@@ -3,6 +3,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useNavigate } from "react-router-dom";
 import TaskList from './TaskList';
 import Swal from 'sweetalert2';
+import TaskAssignmentWithTeams from './TaskAssignmentWithTeams';
 
 function TaskApp() {
     const { user } = useContext(AuthContext)
@@ -92,11 +93,12 @@ function TaskApp() {
     return (
         <div className=''>
             <h1 className='text-center font-bold text-3xl text-orange-400 my-6'>Create a Task</h1>
-            <form className='border max-w-5xl mx-auto shadow-xl p-10 rounded space-y-5'>
-                <div>
+            <form className='border max-w-7xl mx-auto shadow-xl p-10 rounded space-y-5'>
+                <div className='flex items-center'>
                     <label className='font-bold pr-5'>Title:</label>
                     <input
-                        className="input input-bordered w-full max-w-xs text-black"
+                        className="input input-bordered w-full text-black"
+                        placeholder='title'
                         type="text"
                         name="title"
                         value={newTask.title}
@@ -106,39 +108,42 @@ function TaskApp() {
                 <div className='flex items-center'>
                     <label className='font-bold pr-5'>Description:</label>
                     <textarea
-                        className='textarea textarea-bordered text-black'
+                        className='textarea textarea-bordered text-black w-full'
+                        placeholder='description'
                         name="description"
                         value={newTask.description}
                         onChange={handleChange}
                     />
                 </div>
-                <div>
-                    <label className='font-bold pr-5'>Due Date:</label>
-                    <input
-                        className='bg-indigo-950 text-white border-2 p-2 rounded'
-                        type="date"
-                        name="dueDate"
-                        value={newTask.dueDate}
-                        onChange={handleChange}
-                    />
+                <div className='flex justify-evenly items-center'>
+                    <div>
+                        <label className='font-bold pr-5'>Due Date:</label>
+                        <input
+                            className='bg-indigo-950 text-white border-2 p-2 rounded'
+                            type="date"
+                            name="dueDate"
+                            value={newTask.dueDate}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div>
+                        <label className='font-bold pr-5'>Priority:</label>
+                        <select
+                            className='bg-indigo-950 text-white border-2 p-2 rounded'
+                            name="priority"
+                            value={newTask.priority}
+                            onChange={handleChange}
+                        >
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
                 </div>
-                <div>
-                    <label className='font-bold pr-5'>Priority:</label>
-                    <select
-                        className='bg-indigo-950 text-white border-2 p-2 rounded'
-                        name="priority"
-                        value={newTask.priority}
-                        onChange={handleChange}
-                    >
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </div>
-                <div>
+                <div className='flex items-center'>
                     <label className='font-bold pr-5'>Assign To:</label>
                     <input
-                        className="input input-bordered w-full max-w-xs text-black"
+                        className="input input-bordered w-full text-black"
                         type="text"
                         name="assignedTo"
                         placeholder='User Name'
@@ -146,22 +151,25 @@ function TaskApp() {
                         onChange={handleChange}
                     />
                 </div>
-                <div>
-                    <label className='font-bold pr-5'>Status:</label>
-                    <select
-                        className='bg-indigo-950 text-white  border-2 p-2 rounded'
-                        name="status"
-                        value={newTask.status}
-                        onChange={handleChange}
-                    >
-                        <option value="pending">Pending</option>
-                        <option value="in progress">In Progress</option>
-                        <option value="completed">Completed</option>
-                    </select>
+                <div className='flex justify-between items-center'>
+                    <div>
+                        <label className='font-bold pr-5'>Status:</label>
+                        <select
+                            className='bg-indigo-950 text-white  border-2 p-2 rounded'
+                            name="status"
+                            value={newTask.status}
+                            onChange={handleChange}
+                        >
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <button onClick={handleSubmit} className='btn bg-orange-400 font-bold text-white' type="submit">Create Task</button>
                 </div>
-                <button onClick={handleSubmit} className='btn bg-orange-400 font-bold text-white' type="submit">Create Task</button>
             </form>
             <TaskList setStatusFilter={setStatusFilter} handleSortingChange={handleSortingChange} filteredTasks={filteredTasks}></TaskList>
+
         </div>
     );
 }
